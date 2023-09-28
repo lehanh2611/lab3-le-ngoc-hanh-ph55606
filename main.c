@@ -95,32 +95,68 @@ int bai2_2() {
 }
 
 int bai3() {
-    double input, price;
+    double input, result;
 
     printf("Mời nhập số kWh tiêu thụ:");
     scanf("%lf", &input);
     input = round(input);
+    double current = input;
+
+    if (input > 0) {
+        if (current > 50) {
+            result += 50 * 1.678;
+            current -= 50;
+        } else {
+            result += current * 1.678;
+        }
+    }
+
+    if (input >= 51) {
+        if (current >= 50) {
+            result += 50 * 1.734;
+            current -= 50;
+        } else {
+            result += current * 1.734;
+        }
+    }
+
+    if (input >= 101) {
+        if (current >= 100) {
+            result += 100 * 2.014;
+            current -= 100;
+        } else {
+            result += current * 2.014;
+        }
+    }
+
+    if (input >= 201) {
+        if (current >= 100) {
+            result += 100 * 2.536;
+            current -= 100;
+        } else {
+            result += current * 2.536;
+        }
+    }
+
+    if (input >= 301) {
+        if (current >= 100) {
+            result += 100 * 2.834;
+            current -= 100;
+        } else {
+            result += current * 2.834;
+        }
+    }
+
+    if (input >= 401) {
+        result += current * 2.927;
+    }
 
     if (input < 0) {
         printf("Số kWh tiêu thụ không hợp lệ vui lòng nhập lớn hơn 0 kWh\n");
         return 0;
     }
 
-    if (input <= 50) {
-        price = 1.678;
-    } else if (input <= 100) {
-        price = 1.734;
-    } else if (input <= 200) {
-        price = 2.014;
-    } else if (input <= 300) {
-        price = 2.536;
-    } else if (input <= 400) {
-        price = 2.834;
-    } else {
-        price = 2.927;
-    }
-
-    printf("Tiền điện của bạn là %lf: \n", input * price);
+    printf("Tiền điện của bạn là %lf: \n", result);
 
     return 0;
 };
